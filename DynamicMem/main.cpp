@@ -5,7 +5,7 @@ struct Person {
 	char* nimi;
 };
 
-void freeAll(Person* list, int* countPersons) {
+void freeHeap(Person* list, int* countPersons) {
 
 	for (int i = 0; i < *countPersons; i++) {
 		free((list + i)->nimi);
@@ -91,7 +91,7 @@ int main() {
 
 	SortByName(list, &countPersons);
 
-	freeAll(list, &countPersons);
+	freeHeap(list, &countPersons);
 
 	return 0;
 
