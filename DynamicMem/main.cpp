@@ -2,14 +2,14 @@
 #include <stdlib.h>
 
 struct Person {
-	char* nimi;
+	char* name;
 };
 
 void freeHeap(Person* list, int* countPersons) {
 
 	for (int i = 0; i < *countPersons; i++) {
-		free((list + i)->nimi);
-		(list + i)->nimi = NULL;
+		free((list + i)->name);
+		(list + i)->name = NULL;
 	}
 
 	free(list);
@@ -27,7 +27,7 @@ void SortByName(Person* list, int* countPersons) {
 		index = i;
 		lista[i] = (list + i);
 
-		while (index && lista[index]->nimi[0] < lista[index-1]->nimi[0]) 
+		while (index && lista[index]->name[0] < lista[index-1]->name[0]) 
 		{
 			temp = lista[index];
 			lista[index] = lista[index - 1];
@@ -38,7 +38,7 @@ void SortByName(Person* list, int* countPersons) {
 
 	printf("\nSORTED LIST\n");
 	for (int i = 0; i < *countPersons; i++)
-		printf("%s", lista[i]->nimi);
+		printf("%s", lista[i]->name);
 
 	return;
 }
@@ -47,13 +47,13 @@ void AllocateName(char* buffer, Person* list, int* countPersons) {
 
 	int letter = 0;
 
-	(list + *countPersons)->nimi = (char*)malloc(sizeof(char) * 100);
+	(list + *countPersons)->name = (char*)malloc(sizeof(char) * 100);
 
 	while (buffer[letter] != '\0') {
-		(list + *countPersons)->nimi[letter] = buffer[letter];
+		(list + *countPersons)->name[letter] = buffer[letter];
 		letter++;
 	}
-	(list + *countPersons)->nimi[letter] = '\0';
+	(list + *countPersons)->name[letter] = '\0';
 
 	return;
 
@@ -66,7 +66,7 @@ int main() {
 	char buffer[100];
 
 	list = (Person*)malloc(sizeof(Person) * 1);
-
+	printf("Empty line ends program. \n");
 	while (1) {
 
 		printf("Insert name: ");
@@ -86,7 +86,7 @@ int main() {
 
 	printf("\nSAVED PROFILES\n");
 	for (int i = 0; i < countPersons; i++) {
-		printf("Name: %s", (list + i)->nimi);
+		printf("Name: %s", (list + i)->name);
 	}
 
 	SortByName(list, &countPersons);
